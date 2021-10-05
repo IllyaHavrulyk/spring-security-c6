@@ -1,7 +1,11 @@
 package com.havrulyk.springsecurityc6.config;
 
+import com.havrulyk.springsecurityc6.entity.User;
+import com.havrulyk.springsecurityc6.security.authentication.TokenAuthentication;
+import com.havrulyk.springsecurityc6.security.filter.TokenAuthFilter;
 import com.havrulyk.springsecurityc6.security.filter.UsernamePasswordAuthFilter;
 import com.havrulyk.springsecurityc6.security.providers.OtpAuthenticationProvider;
+import com.havrulyk.springsecurityc6.security.providers.TokenAuthProvider;
 import com.havrulyk.springsecurityc6.security.providers.UsernamePasswordAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +30,14 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
   @Autowired
   private UsernamePasswordAuthFilter usernamePasswordAuthFilter;
 
+  @Autowired
+  private TokenAuthFilter tokenAuthFilter;
+
+  @Autowired
+  private TokenAuthProvider tokenAuthProvider;
+
   @Bean
-  public PasswordEncoder passwordEncoder(){
+  public PasswordEncoder passwordEncoder() {
     return NoOpPasswordEncoder.getInstance();
   }
 
@@ -38,7 +48,17 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.addFilterAt(usernamePasswordAuthFilter, BasicAuthenticationFilter.class);
+    http.addFilterAt(usernamePasswordAuthFilter, BasicAuthenticationFilter.class).addFilterAfter(tokenAuthFilter, BasicAuthenticationFilter.class);
+  }
+
+  @Bean
+  public TokenAuthFilter tokenAuthFilter(){
+    return new TokenAuthFilter();
+  }
+
+  @Bean
+  public UsernamePasswordAuthFilter usernamePasswordAuthFilter(){
+    return new UsernamePasswordAuthFilter();
   }
 
   @Override

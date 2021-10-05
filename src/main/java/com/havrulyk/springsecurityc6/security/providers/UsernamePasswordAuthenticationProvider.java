@@ -1,6 +1,6 @@
 package com.havrulyk.springsecurityc6.security.providers;
 
-import com.havrulyk.springsecurityc6.security.authentications.UsernamePasswordAuthentication;
+import com.havrulyk.springsecurityc6.security.authentication.UsernamePasswordAuthentication;
 import com.havrulyk.springsecurityc6.service.JpaUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;

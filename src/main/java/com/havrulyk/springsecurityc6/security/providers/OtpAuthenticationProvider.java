@@ -2,7 +2,7 @@ package com.havrulyk.springsecurityc6.security.providers;
 
 import com.havrulyk.springsecurityc6.entity.Otp;
 import com.havrulyk.springsecurityc6.repository.OtpRepository;
-import com.havrulyk.springsecurityc6.security.authentications.OtpAuthentication;
+import com.havrulyk.springsecurityc6.security.authentication.OtpAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;

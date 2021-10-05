@@ -1,4 +1,4 @@
-package com.havrulyk.springsecurityc6.security.authentications;
+package com.havrulyk.springsecurityc6.security.authentication;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
